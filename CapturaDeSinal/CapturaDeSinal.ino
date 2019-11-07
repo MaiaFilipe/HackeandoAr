@@ -66,7 +66,6 @@ void loop() {
     digitalWrite(LEDPIN, LOW);//end of visual indicator, for this time
     attachInterrupt(digitalPinToInterrupt(rxPinIR), rxIR_Interrupt_Handler, CHANGE);//re-enable ISR for receiving IR signal
   }
-
 }
 
 void rxIR_Interrupt_Handler() {
