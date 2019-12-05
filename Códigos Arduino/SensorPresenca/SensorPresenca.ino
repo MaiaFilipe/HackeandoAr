@@ -1,20 +1,23 @@
-#define PIR 7
-#define LED 8
- 
+#define PIR 6
+#define PIRterra 7
+#define PIR5v 5
+
 int iniciaSensor = 0;
  
 void setup() {
   Serial.begin(9600);
-  pinMode(LED, OUTPUT);
+  pinMode(PIRterra, OUTPUT);
+  digitalWrite(PIRterra, LOW);
+  pinMode(PIR5v, OUTPUT);
+  digitalWrite(PIR5v, HIGH);
 }
 void loop() {
   iniciaSensor = digitalRead(PIR);
-  Serial.print("Valor do Sensor PIR: "); 
   Serial.println(iniciaSensor);
   if(iniciaSensor == 1){
-    digitalWrite(LED, HIGH);
+    Serial.println("TRUE");
   } else {
-    digitalWrite(LED, LOW);
+    Serial.println("FALSE");
   }
   delay(500);
 }

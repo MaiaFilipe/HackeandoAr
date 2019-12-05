@@ -1,8 +1,6 @@
-#include <Wire.h>
 #include <Adafruit_BMP085.h>
- 
+#include <Wire.h>
 Adafruit_BMP085 bmp180;
- 
 int mostrador = 0;
    
 void setup() 
@@ -15,32 +13,25 @@ void setup()
   }
 }
    
-void loop() 
-{   
-   Serial.print("Temperatura : ");
-   if ( bmp180.readTemperature() < 10)
-   {
+void loop() {
+  Serial.print("Temperatura : ");
+   if ( bmp180.readTemperature() < 10){
      Serial.print(bmp180.readTemperature());
      Serial.println(" C");
-   }
-   else
-   {
+   }else{
      Serial.print(bmp180.readTemperature(),1);
      Serial.println(" C");
    }
-   if (mostrador == 0)
-   {
      Serial.print("Altitude : ");
      Serial.print(bmp180.readAltitude());
      Serial.println(" m");
-    }
-   if (mostrador == 1)
-   {
      Serial.print("Pressao : ");
-     Serial.print(bmp180.readPressure());  
+     float Pa = bmp180.readPressure();
+     float atm = (Pa/101325);
+     Serial.print(atm);
+     Serial.println(" Atm");
+     Serial.print("Pressao : ");
+     Serial.print(Pa);
      Serial.println(" Pa");
-   }
-    
-   delay(3000);
-   mostrador = !mostrador;
+     Serial.println("");
 }
